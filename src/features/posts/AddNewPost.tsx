@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { IPost } from "../../typings";
 import PostInputForm from "./PostInputForm";
+import { useAppDispatch } from "../../app/hooks";
+import { saveBlogPost } from "./postSlice";
+import { switchToAllPostsComponent } from "./navigationSlice";
 
 const AddNewPost = () => {
   const [title, setTitle] = useState("Blog Title");
   const [content, setContent] = useState("Blog Details");
+  const dispatch = useAppDispatch();
 
   const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,7 +19,8 @@ const AddNewPost = () => {
       voteCount: 0,
       isFavorite: false,
     };
-    console.log(post);
+    dispatch(saveBlogPost(post));
+    dispatch(switchToAllPostsComponent());
   };
   return (
     <>
