@@ -1,10 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import navigationReducer from '../features/posts/navigationSlice'
 import postReducer from "../features/posts/postSlice";
+import currentPostReducer from "../features/posts/currentPostSlice";
 export const store = configureStore({
   reducer: {
     navigation: navigationReducer,
-    posts: postReducer
+    posts: postReducer,
+    currentPost: currentPostReducer
   },
 });
 

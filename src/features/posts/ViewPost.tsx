@@ -1,5 +1,7 @@
+import { useAppSelector } from "../../app/hooks";
+import { selectCurrentPost } from "./currentPostSlice";
 const ViewPost = () => {
-    const post = { title: "", content: "" };
+    const post = useAppSelector(selectCurrentPost);
     return (
       <>
         <section className="view-post-container">
