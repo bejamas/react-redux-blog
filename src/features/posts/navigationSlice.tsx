@@ -1,22 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
+import { INavigationState } from "../../typings";
 
-export interface INavigationState {
-  currentComponent:
-    | "AllPostsComponent"
-    | "AddNewPostComponent"
-    | "FavoriteComponent"
-    | "EditPostComponent"
-    | "ViewPostComponent";
-}
+
 
 const initialState: INavigationState = {
   currentComponent: "AllPostsComponent",
 };
 
 export const navigationSlice = createSlice({
-  name: "navigation",
-  initialState: initialState,
+  name: "navigations",
+  initialState,
   reducers: {
     switchToAllPostsComponent: (state) => {
       state.currentComponent = "AllPostsComponent";

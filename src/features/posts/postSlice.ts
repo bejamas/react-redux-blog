@@ -66,7 +66,12 @@ export const {
   downvotePost,
   toggleFavorite,
   updateBlogPost,
-  deletePost
+  deletePost,
 } = postSlice.actions;
+
+export const selectAllFavoritePosts = (state: RootState) =>
+  state.posts.filter((post) => {
+    return post.isFavorite === true;
+  });
 
 export default postSlice.reducer;
