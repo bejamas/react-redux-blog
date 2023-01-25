@@ -40,7 +40,7 @@ const NavigationBar = () => {
             }
             onClick={() => dispatch(switchToAddNewPostComponent())}
           >
-            <span className="add-icon">+</span>Add New
+            <span className="add-icon">+</span>New
           </p>
         </section>
         <section className="left-nav-section">

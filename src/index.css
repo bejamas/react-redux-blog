@@ -170,7 +170,7 @@ align-items: center;
   text-align: center;
 }
 .not-favorite{
-  border: 2px #2600ff solid;
+  border: 4px #2600ff double;
 }
 
 .rating-section{
