@@ -47,7 +47,7 @@ const BlogCard = (props: { posts: IPost[] }) => {
                 <span
                   className={post.isFavorite ? "is-favorite" : "not-favorite"}
                 >
-                  ❤
+                  ♥
                 </span>
               </section>
               <section className="rating-section">
