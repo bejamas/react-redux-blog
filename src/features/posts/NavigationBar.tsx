@@ -14,7 +14,7 @@ const NavigationBar = () => {
     <>
       <nav>
         <section className="right-nav-section">
-          <div className="logo">
+          <div className="logo"  onClick={() => dispatch(switchToAllPostsComponent())}>
             <h1>Redux</h1>
             <h2>Blog</h2>
           </div>
