@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from "./app/hooks";
+import { useAppSelector } from "./app/hooks";
 import AddNewPost from "./features/posts/AddNewPost";
 import AllPosts from "./features/posts/AllPosts";
 import EditPost from "./features/posts/EditPost";
