@@ -161,16 +161,17 @@ align-items: center;
 
 
 
-.favorite{
+.favorite,.not-favorite{
   font-size: 30px;
   color: #2600ff;
   cursor: pointer;
   text-shadow: 1px 1px 3px #2C48F3;
-  border: 1px #2600ff solid;
   padding: 0 5px;
   text-align: center;
 }
-
+.not-favorite{
+  border: 2px #2600ff solid;
+}
 
 .rating-section{
   display: flex;
@@ -180,12 +181,13 @@ align-items: center;
   color:  #ffffff;
   font-size: 25px;
   background-color: #2C48F3;
-  padding: 0px 15px;
+  padding: 0px 15px 5px 15px;
   margin: 0;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 255, 0.25) 0px 2px 5px -1px, rgba(66, 4, 236, 0.3) 0px 1px 3px -1px;
   cursor: pointer;
   text-align: center;
+  font-weight: 900;
 }
 .vote-counter{
   font-size: 15px;

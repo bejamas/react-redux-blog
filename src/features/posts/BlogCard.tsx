@@ -56,7 +56,8 @@ const BlogCard = (props: { posts: IPost[] }) => {
             </section>
             <section className="card-bottom">
               <section onClick={() => dispatch(toggleFavorite(post.id))}>
-                <span className="favorite">{post.isFavorite ? "♥" : "♡"}</span>
+                <span className={post.isFavorite ?"favorite":"not-favorite"}>
+                {post.isFavorite ? "❤" : "♡"}</span>
               </section>
               <section className="rating-section">
                 <span
