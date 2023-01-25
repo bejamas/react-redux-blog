@@ -61,6 +61,8 @@ font-size: 15px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .nav-item span {
   margin-right: 5px;
@@ -198,15 +200,12 @@ cursor: pointer;
   color: rgba(0, 0, 0, 0.7);
 }
 .card-summary{
-
   font-size: 15px;
   font-weight: 200;
   color: rgba(0, 0, 0, 0.6);
-}
-.card-summary{
   margin-top: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
 
 .view-post-container{
   width: 80%;
@@ -248,7 +247,7 @@ cursor: pointer;
 .title-input{
   width: 100%;
   font-size: 20px;
-  padding: 10px 0;
+  padding: 10px 10px;
   outline: none;
 }
 .content-input{
@@ -258,14 +257,15 @@ cursor: pointer;
   font-size: 20px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   outline: none;
+  padding: 10px 10px;
 }
 
 .post-button{
-  width: 100%;
+  width: 100px;
   margin-top: 10px;
   font-size: 20px;
-  padding: 10px;
   background-color: #2C48F3;
+  padding: 10px;
   color: #ffffff;
   border: none;
   cursor: pointer;
@@ -290,4 +290,35 @@ footer p {
   text-align: center;
   font-size: 14px;
   font-weight: 500;
+}
+
+@media only screen and (max-width: 450px) {
+.title-input{
+  font-size:15px;
+}
+.content-input{
+  font-size: 15px;
+}
+}
+
+@media only screen and (max-width: 300px) {
+  .nav-item{
+    margin: 0 0 0 15px;
+    font-size: 10px;
+    font-weight: 200;
+  }
+  .add-icon{
+    padding: 0px 4px;
+    border-radius: 50%;
+    margin-right: 2px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .left-nav-section{
+    margin-right: 0px;
+  }
+  footer{
+    width: 70%;
+  }
 }

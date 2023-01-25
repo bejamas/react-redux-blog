@@ -2,7 +2,7 @@ const Footer = () => {
     return (
       <>
         <footer>
-          <p>Made with ❤ | Code available on GitHub</p>
+          <p> Code is available on <a href="https://github.com/tope-olajide/react-redux-blog" >GitHub.</a></p>
         </footer>
       </>
     );
