@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IPost } from "../../typings";
 import PostInputForm from "./PostInputForm";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
