@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useAppSelector, useAppDispatch } from "./app/hooks";
+import AddNewPost from "./features/posts/AddNewPost";
+import AllPosts from "./features/posts/AllPosts";
+import EditPost from "./features/posts/EditPost";
+import FavoritePosts from "./features/posts/FavoritePosts";
+import Footer from "./features/posts/Footer";
+import NavigationBar from "./features/navigations/NavigationBar";
+import { selectCurrentComponent } from "./features/navigations/navigationSlice";
+import ViewPostDetails from "./features/posts/ViewPostDetails";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const currentComponent = useAppSelector(selectCurrentComponent);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
-
-export default App
+    <>
+      <section className="main-container">
+        <NavigationBar />
+        <section className="card-container">
+          {currentComponent === "AllPostsComponent" ? (
+            <AllPosts />
+          ) : currentComponent === "EditPostComponent" ? (
+            <EditPost />
+          ) : currentComponent === "ViewPostComponent" ? (
+            <ViewPostDetails />
+          ) : currentComponent === "AddNewPostComponent" ? (
+            <AddNewPost />
+          ) : currentComponent === "FavoriteComponent" ? (
+            <FavoritePosts />
+          ) : null}
+        </section>
+        <Footer />
+      </section>
+    </>
+  );
+};
+export default App;

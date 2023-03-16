@@ -1,29 +1,64 @@
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  selectCurrentComponent,
+  switchToAllPostsComponent,
+  switchToAddNewPostComponent,
+  switchToFavoriteComponent,
+} from "./navigationSlice";
+
 const NavigationBar = () => {
-    return (
-      <>
-        <nav>
-          <section className="right-nav-section">
-            <div className="logo">
-              <h1>Redux</h1>
-              <h2>Blog</h2>
-            </div>
-            <p className="divider">|</p>
-  
-            <p className="nav-item">Blogs</p>
-  
-            <p className="nav-item">
-              <span className="add-icon">+</span>Add New
-            </p>
-          </section>
-          <section className="left-nav-section">
-            <p className="divider">|</p>
-  
-            <p className="nav-item">
-              <span>❤</span>Favorites
-            </p>
-          </section>
-        </nav>
-      </>
-    );
-  };
-  export default NavigationBar;
+  const dispatch = useAppDispatch();
+  const currentComponent = useAppSelector(selectCurrentComponent);
+  return (
+    <>
+      <nav>
+        <section className="right-nav-section">
+          <div className="logo"  onClick={() => dispatch(switchToAllPostsComponent())}>
+            <h1>Redux</h1>
+            <h2>Blog</h2>
+          </div>
+
+          <p className="divider">|</p>
+
+          <p
+            className={
+              currentComponent === "AllPostsComponent"
+                ? "nav-item active"
+                : "nav-item"
+            }
+            onClick={() => dispatch(switchToAllPostsComponent())}
+          >
+            Blogs
+          </p>
+
+          <p
+            className={
+              currentComponent === "AddNewPostComponent"
+                ? "nav-item active"
+                : "nav-item"
+            }
+            onClick={() => dispatch(switchToAddNewPostComponent())}
+          >
+            <span className="add-icon">+</span>New
+          </p>
+        </section>
+        <section className="left-nav-section">
+          <p className="divider">|</p>
+
+          <p
+            className={
+              currentComponent === "FavoriteComponent"
+                ? "nav-item active"
+                : "nav-item"
+            }
+            onClick={() => dispatch(switchToFavoriteComponent())}
+          >
+            <span>❤</span>Favorites
+          </p>
+        </section>
+      </nav>
+    </>
+  );
+};
+export default NavigationBar;

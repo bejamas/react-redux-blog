@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import navigationReducer from '../features/navigations/navigationSlice'
 
 export const store = configureStore({
-  reducer: {},
+    reducer: {navigation: navigationReducer},
 });
 
 export type AppDispatch = typeof store.dispatch;
