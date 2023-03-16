@@ -31,12 +31,21 @@ export const postSlice = createSlice({
               return post;
             });
               state.allPosts = updatedPosts;  
+        },
+        toggleFavorite: (state, actions: { payload: number }) => {
+            const updatedPosts =  state.allPosts.map((post) => {
+              if (post.id === actions.payload) {
+                return { ...post, isFavorite: !post.isFavorite };
+              }
+              return post;
+            });
+            state.allPosts = updatedPosts;
           },
     }
 })
 
 export const selectAllPosts = (state: RootState) => state.posts;
 
-export const { saveBlogPost, upvotePost, downvotePost } = postSlice.actions;
+export const { saveBlogPost, upvotePost, downvotePost, toggleFavorite } = postSlice.actions;
 
 export default postSlice.reducer;

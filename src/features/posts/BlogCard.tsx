@@ -1,6 +1,6 @@
 import { IPost } from "../../typings";
 
-import { downvotePost, upvotePost } from "./postSlice";
+import { downvotePost, upvotePost, toggleFavorite } from "./postSlice";
 import { useAppDispatch } from "../../app/hooks";
 
 const BlogCard = (props: { posts: IPost[] }) => {
@@ -27,8 +27,8 @@ const BlogCard = (props: { posts: IPost[] }) => {
               </p>
             </section>
             <section className="card-bottom">
-              <section>
-                <span className="favorite">♥</span>
+              <section onClick={() => dispatch(toggleFavorite(post.id))}>
+                <span className="favorite">{post.isFavorite ? "♥" : "♡"}</span>
               </section>
               <section className="rating-section">
                 <span
