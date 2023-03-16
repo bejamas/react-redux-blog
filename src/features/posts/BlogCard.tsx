@@ -1,10 +1,20 @@
 import { IPost } from "../../typings";
 
-import { downvotePost, upvotePost, toggleFavorite } from "./postSlice";
+import {
+  downvotePost,
+  upvotePost,
+  toggleFavorite,
+  setCurrentPost,
+} from "./postSlice";
 import { useAppDispatch } from "../../app/hooks";
+import { switchToViewPostComponent } from "../navigations/navigationSlice";
 
 const BlogCard = (props: { posts: IPost[] }) => {
   const dispatch = useAppDispatch();
+  const viewDetails = (post: IPost) => {
+    dispatch(setCurrentPost(post));
+    dispatch(switchToViewPostComponent());
+  };
   return (
     <>
       {props.posts.map((post) => {
@@ -14,7 +24,12 @@ const BlogCard = (props: { posts: IPost[] }) => {
               <span className="edit-icon">✎</span>
               <h1 className="delete-icon">x</h1>
             </div>
-            <section className="card-body">
+            <section
+              className="card-body"
+              onClick={() => {
+                viewDetails(post);
+              }}
+            >
               <h1 className="card-title">
                 {post.title.length > 150
                   ? post.title.slice(0, 150) + "..."
