@@ -56,6 +56,22 @@ export const postSlice = createSlice({
       state.currentPost = action.payload;
       return state;
     },
+    updateBlogPost: (
+      state,
+      actions: { payload: { id: number; content: string; title: string } }
+    ) => {
+      const updatedPosts = state.allPosts.map((post) => {
+        if (post.id === actions.payload.id) {
+          return {
+            ...post,
+            title: actions.payload.title,
+            content: actions.payload.content,
+          };
+        }
+        return post;
+      });
+      state.allPosts = updatedPosts;
+    },
   },
 });
 
@@ -67,6 +83,7 @@ export const {
   downvotePost,
   toggleFavorite,
   setCurrentPost,
+  updateBlogPost,
 } = postSlice.actions;
 
 export default postSlice.reducer;

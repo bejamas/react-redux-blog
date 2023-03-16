@@ -2,25 +2,30 @@ import { useState } from "react";
 import { IPost } from "../../typings";
 import PostInputForm from "./PostInputForm";
 
-const EditPost = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { switchToAllPostsComponent } from "../navigations/navigationSlice";
+import { updateBlogPost, selectAllPosts } from "./postSlice";
 
-  const updatePost = (e: React.FormEvent<HTMLFormElement>) => {
+
+const EditPost = () => {
+
+  const dispatch = useAppDispatch();
+  const allPost = useAppSelector(selectAllPosts);
+
+  const [title, setTitle] = useState(allPost.currentPost.title);
+  const [content, setContent] = useState(allPost.currentPost.content);
+
+  const modifyPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const post: IPost = {
-      id: Date.now(),
-      title,
-      content,
-      voteCount: 0,
-      isFavorite: false,
-    };
-    console.log(post);
+    dispatch(updateBlogPost({ id: allPost.currentPost.id, title, content }));
+    dispatch(switchToAllPostsComponent());
   };
+
+
   return (
     <>
       <PostInputForm
-        submitPost={updatePost}
+        submitPost={modifyPost}
         title={title}
         content={content}
         setTitle={setTitle}
