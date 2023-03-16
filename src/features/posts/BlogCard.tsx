@@ -1,19 +1,18 @@
 import { IPost } from "../../typings";
-import { useAppDispatch } from "../../app/hooks";
-import { setCurrentPost } from "./currentPostSlice";
-import {
-  switchToEditPostComponent,
-  switchToViewPostComponent,
-} from "./navigationSlice";
+
 import {
   downvotePost,
   upvotePost,
   toggleFavorite,
-  deletePost,
+  setCurrentPost,
+  deletePost
 } from "./postSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { switchToViewPostComponent, switchToEditPostComponent } from "../navigations/navigationSlice";
+
 const BlogCard = (props: { posts: IPost[] }) => {
   const dispatch = useAppDispatch();
-  const viewBlog = (post: IPost) => {
+  const viewDetails = (post: IPost) => {
     dispatch(setCurrentPost(post));
     dispatch(switchToViewPostComponent());
   };
@@ -27,20 +26,13 @@ const BlogCard = (props: { posts: IPost[] }) => {
         return (
           <section className="card" key={post.id}>
             <div className="card-header">
-              <span className="edit-icon" onClick={() => editBlog(post)}>
-                ✎
-              </span>
-              <h1
-                className="delete-icon"
-                onClick={() => dispatch(deletePost(post.id))}
-              >
-                x
-              </h1>
+              <span className="edit-icon" onClick={() => editBlog(post)}>✎</span>
+              <h1 className="delete-icon"onClick={()=>dispatch(deletePost(post.id))}>x</h1>
             </div>
             <section
               className="card-body"
               onClick={() => {
-                viewBlog(post);
+                viewDetails(post);
               }}
             >
               <h1 className="card-title">
@@ -56,8 +48,7 @@ const BlogCard = (props: { posts: IPost[] }) => {
             </section>
             <section className="card-bottom">
               <section onClick={() => dispatch(toggleFavorite(post.id))}>
-                <span className={post.isFavorite ?"favorite":"not-favorite"}>
-                {post.isFavorite ? "❤" : "♡"}</span>
+                <span className="favorite">{post.isFavorite ? "♥" : "♡"}</span>
               </section>
               <section className="rating-section">
                 <span

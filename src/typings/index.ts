@@ -1,4 +1,3 @@
-
 export interface IPost {
     id: number,
     title: string,
@@ -6,7 +5,6 @@ export interface IPost {
     voteCount:number,
     isFavorite: boolean,
 }
-
 export interface INavigationState {
     currentComponent:
       | "AllPostsComponent"

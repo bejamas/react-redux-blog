@@ -1,21 +1,25 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectCurrentPost } from "./currentPostSlice";
-import { switchToAllPostsComponent } from "./navigationSlice";
 import PostInputForm from "./PostInputForm";
-import { updateBlogPost } from "./postSlice";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { switchToAllPostsComponent } from "../navigations/navigationSlice";
+import { updateBlogPost, selectAllPosts } from "./postSlice";
+
 
 const EditPost = () => {
+
   const dispatch = useAppDispatch();
-  const post = useAppSelector(selectCurrentPost);
-  const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(post.content);
+  const allPost = useAppSelector(selectAllPosts);
+
+  const [title, setTitle] = useState(allPost.currentPost.title);
+  const [content, setContent] = useState(allPost.currentPost.content);
 
   const modifyPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(updateBlogPost({ id: post.id, title, content }));
+    dispatch(updateBlogPost({ id: allPost.currentPost.id, title, content }));
     dispatch(switchToAllPostsComponent());
   };
+
 
   return (
     <>

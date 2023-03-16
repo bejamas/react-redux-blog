@@ -1,14 +1,14 @@
-import { useAppSelector } from "./app/hooks";
+import { useAppSelector, useAppDispatch } from "./app/hooks";
 import AddNewPost from "./features/posts/AddNewPost";
 import AllPosts from "./features/posts/AllPosts";
 import EditPost from "./features/posts/EditPost";
 import FavoritePosts from "./features/posts/FavoritePosts";
 import Footer from "./features/posts/Footer";
-import NavigationBar from "./features/posts/NavigationBar";
-import { selectCurrentComponent } from "./features/posts/navigationSlice";
-import ViewPost from "./features/posts/ViewPost";
+import NavigationBar from "./features/navigations/NavigationBar";
+import { selectCurrentComponent } from "./features/navigations/navigationSlice";
+import ViewPostDetails from "./features/posts/ViewPostDetails";
 
-const Blog = () => {
+const App = () => {
   const currentComponent = useAppSelector(selectCurrentComponent);
 
   return (
@@ -21,7 +21,7 @@ const Blog = () => {
           ) : currentComponent === "EditPostComponent" ? (
             <EditPost />
           ) : currentComponent === "ViewPostComponent" ? (
-            <ViewPost />
+            <ViewPostDetails />
           ) : currentComponent === "AddNewPostComponent" ? (
             <AddNewPost />
           ) : currentComponent === "FavoriteComponent" ? (
@@ -33,4 +33,4 @@ const Blog = () => {
     </>
   );
 };
-export default Blog;
+export default App;

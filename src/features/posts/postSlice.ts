@@ -2,44 +2,65 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { IPost } from "../../typings";
 
-const initialState: IPost[] = [];
+interface IAllPosts {
+  allPosts: IPost[];
+  currentPost: IPost;
+}
+const defaultCurrentPost: IPost = {
+  id: 0,
+  title: "",
+  content: "",
+  voteCount: 0,
+  isFavorite: false,
+};
+const initialState: IAllPosts = {
+  allPosts: [],
+  currentPost: defaultCurrentPost,
+};
 
 export const postSlice = createSlice({
   name: "all-posts",
   initialState: initialState,
   reducers: {
     saveBlogPost: (state, actions: { payload: IPost }) => {
-      state.push(actions.payload);
+      state.allPosts.push(actions.payload);
     },
     upvotePost: (state, actions: { payload: number }) => {
-      return state.map((post) => {
+      const updatedPosts = state.allPosts.map((post) => {
         if (post.id === actions.payload) {
           return { ...post, voteCount: post.voteCount + 1 };
         }
         return post;
       });
+      state.allPosts = updatedPosts;
     },
     downvotePost: (state, actions: { payload: number }) => {
-      return state.map((post) => {
+      const updatedPosts = state.allPosts.map((post) => {
         if (post.id === actions.payload) {
           return { ...post, voteCount: post.voteCount - 1 };
         }
         return post;
       });
+      state.allPosts = updatedPosts;
     },
     toggleFavorite: (state, actions: { payload: number }) => {
-      return state.map((post) => {
+      const updatedPosts = state.allPosts.map((post) => {
         if (post.id === actions.payload) {
           return { ...post, isFavorite: !post.isFavorite };
         }
         return post;
       });
+      state.allPosts = updatedPosts;
+    },
+    setCurrentPost: (state, action: { payload: IPost }) => {
+      state.currentPost = action.payload;
+      return state;
     },
     updateBlogPost: (
       state,
       actions: { payload: { id: number; content: string; title: string } }
     ) => {
-      return state.map((post) => {
+      const updatedPosts = state.allPosts.map((post) => {
         if (post.id === actions.payload.id) {
           return {
             ...post,
@@ -49,29 +70,32 @@ export const postSlice = createSlice({
         }
         return post;
       });
-    },
-    deletePost: (state, actions: { payload: number }) => {
-      return state.filter((post) => {
-        return post.id !== actions.payload;
-      });
-    },
+      state.allPosts = updatedPosts;
+      },
+      deletePost: (state, actions: { payload: number }) => {
+        const updatedPosts = state.allPosts.filter((post) => {
+          return post.id !== actions.payload;
+        });
+        state.allPosts = updatedPosts;
+      },
   },
 });
 
 export const selectAllPosts = (state: RootState) => state.posts;
 
+export const selectAllFavoritePosts = (state: RootState) =>
+  state.posts.allPosts.filter((post) => {
+    return post.isFavorite === true;
+  });
+  
 export const {
   saveBlogPost,
   upvotePost,
   downvotePost,
   toggleFavorite,
-  updateBlogPost,
-  deletePost,
+  setCurrentPost,
+    updateBlogPost,
+  deletePost
 } = postSlice.actions;
-
-export const selectAllFavoritePosts = (state: RootState) =>
-  state.posts.filter((post) => {
-    return post.isFavorite === true;
-  });
 
 export default postSlice.reducer;
