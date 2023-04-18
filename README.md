@@ -1,4 +1,4 @@
-# react-redux-blog
+# Modern React Redux Blog
 
 A frontend blog made with TypeScript, React and Redux Toolkit.
 It is the source code file for this tutorial: [Learn Modern React and Redux in 2023 by Building a Blog](https://bejamas.io/blog/learn-modern-react-and-redux-in-2023-by-building-a-blog/)
@@ -34,9 +34,9 @@ Then visit: http://localhost:5173/ on your browser to see the result.
 
 ## Built With
 
-[ReactJS](https://react.dev/)
-[Redux](https://redux.js.org/)
-[Vitejs](https://vitejs.dev/)
+- [ReactJS](https://react.dev/)
+- [Redux](https://redux.js.org/)
+- [Vitejs](https://vitejs.dev/)
 
 ## License
 
